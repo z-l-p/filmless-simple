@@ -65,6 +65,9 @@ void printInfo() {
   println("CALIBRATION H (MM): " + (ROWS * (SPACING / DPMM)));
   
   println("SOUNDTRACK SAMPLE RATE: " + (SPACING * 24));
+  
+  println("MAGIC H CORRECTION: " +  MAGIC_H_CORRECTION);
+  println("MAGIC W CORRECTION: " +  MAGIC_W_CORRECTION);
 }
 
 void setup () {
