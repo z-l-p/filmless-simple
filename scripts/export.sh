@@ -1,6 +1,12 @@
 #!/bin/bash
 
-WITH_SOUND=true		#change to false for a silent film
+if [[ "${1}" == "" ]]; then
+   echo "Please include path to video file as first argument"
+   exit 1
+fi
+
+
+WITH_SOUND=false		#change to false for a silent film
 
 #changes based on printer DPI, this is for 1440
 #check the output of the calibration script
@@ -10,6 +16,11 @@ AUDIO_RATE=10368
 #sh export.sh /path/to/my/video.mov
 #or hardcode it by changing VIDEO=${1} to VIDEO=/path/to/my/video.mov
 VIDEO="${1}"
+
+if [ ! -f "${VIDEO}" ]; then
+    echo "Video file ${VIDEO} does not exist, exiting script..."
+    exit 2 
+fi
 
 # change these to directory where you will store your frames and audio
 FRAMES_DIR=~/Desktop/frames/
