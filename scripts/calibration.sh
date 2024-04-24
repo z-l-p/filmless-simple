@@ -7,7 +7,11 @@
 #Requires ImageMagick
 
 #Printer DPI
-DPI=1440
+if [[ "${1}" == "" ]]; then
+	echo "Please provide your DPI as your first argument"
+	exit 1
+fi
+DPI=${1}
 #Location of calibration files
 CALIBRATION_FILES="../filmless_calibration/*.tif"
 

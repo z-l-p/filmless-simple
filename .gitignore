@@ -1,1 +1,11 @@
 *.DS_Store
+filmless_processing/data/*.TIF
+filmless_processing/data/*.PNG
+filmless_processing/data/frames/*.png
+filmless_processing/data/frames/*.jpeg
+filmless_processing/data/frames/*.jpg
+filmless_processing/data/frames/*.tif
+filmless_processing/data/frames/*.PNG
+filmless_processing/data/frames/*.JPEG
+filmless_processing/data/frames/*.JPG
+filmless_processing/data/frames/*.TIF

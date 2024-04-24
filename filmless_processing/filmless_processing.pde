@@ -10,14 +10,9 @@ import soundtrack.optical.*;
  *  CHANGE THESE
  **/
 
-String DESKTOP = System.getProperty("user.home") + "/Desktop";
-String SOURCE = DESKTOP + "/frames/";           //path to directory containing frames
-String SOUND = DESKTOP + "/audio/audio.wav";    //leave empty string if silent
-String RENDER_PATH = DESKTOP + "/";             //path to directory where pages will be placed
-
 //types: unilateral, variable area, dual variable area, maurer, variable density
-String SOUNDTRACK_TYPE = "unilateral";
-int DPI = 1440;               //maximum printer DPI 
+int DPI = 1200;               //maximum printer DPI 
+String SOUNDTRACK_TYPE  = "unilateral";
 String PITCH = "long";        // long, short //7.62, 7.605
 String FORMAT = "16mm";       //16mm or super16
 int PERFS = 1;                //single (1) or double (2) perf film
@@ -30,6 +25,12 @@ boolean NEGATIVE = false;     //true to invert image data
 boolean SHOW_PERFS = true;    //set to true to print perfs for cutting registration
 color PERFS_COLOR = color(255);
 int SOUND_OFFSET = 25;
+
+//Don't change unless necessary
+String SEP = System.getProperty("file.separator");
+
+String SOURCE = "frames";           //path to directory containing frames
+String SOUND = "audio";    //leave empty string if silent
 
 //This is a magic number that is used to scale the vertical (H) or horizontal (W) resolution
 //because the printer sometimes lies to you.
@@ -62,6 +63,8 @@ int FRAME_LINE = round((SPACING - FRAME_H) / 2);
 int PAGES = 0;
 int FRAMES = 0;
 int SOUND_W = ceil(DPMM * (12.52 - 10.26));
+boolean HAS_SOUND = false;
+String SOUNDTRACK_FILE = "";
 
 SoundtrackOptical soundtrack;
 String[] frames;
@@ -74,27 +77,29 @@ void setup () {
   size(640, 480);
   //surface.setResizable(true);
   println(SOURCE);
-  frames = listFrames(SOURCE);
+  println(SOUND);
+  frames = listFrames(SOURCE, SOUND);
   if (frames == null) {
     println("Frames not found, check SOURCE path");
     exit();
+    return;
   }
   
   FRAMES = frames.length;
   PAGES = ceil((float) FRAMES / (ROWS * COLUMNS));
   pageBuffer = createGraphics(PAGE_W_PIXELS, PAGE_H_PIXELS);
   
-  if (!SOUND.equals("")) {
-    soundtrack = new SoundtrackOptical(this, SOUND, DPI, 1.0, SOUNDTRACK_TYPE, PITCH, !NEGATIVE);
+  if (HAS_SOUND) {
+    soundtrack = new SoundtrackOptical(this, SOUNDTRACK_FILE, DPI, 1.0, SOUNDTRACK_TYPE, PITCH, !NEGATIVE);
   }
   
   printInfo();
   
-  if (PERFS == 2 && !SOUND.equals("") ) {
+  if (PERFS == 2 && HAS_SOUND ) {
     println("WARNING: Double perf film and soundtrack will interfere with one another. Are you sure?"); 
   }
   
-  if (FORMAT.equals("super16") && !SOUND.equals("")) {
+  if (FORMAT.equals("super16") && HAS_SOUND) {
     println("WARNING: Super16 frame and soundtrack will interfere with one another. Are you sure?"); 
   }
   
@@ -139,37 +144,73 @@ void printInfo() {
   }
 }
 
-String[] listFrames (String dir) {
+String[] listFrames (String dir, String audioDir) {
   ArrayList<String> tmp = new ArrayList<String>();
+  ArrayList<String> audioTmp = new ArrayList<String>();
   String output[];
   File file;
+  File audioFile;
   int arraySize;
   int o = 0;
-  if (dir.substring(dir.length() - 1, dir.length()) != "/") {
-    dir = dir + "/";
+  dir = dataPath(dir);
+  audioDir = dataPath(audioDir);
+  println(dir);
+  println(audioDir);
+  if (dir.substring(dir.length() - 1, dir.length()) != SEP) {
+    dir = dir + SEP;
+  }
+  if (audioDir.substring(audioDir.length() - 1, audioDir.length()) != SEP) {
+    audioDir = audioDir + SEP;
   }
   file = new File(dir);
+  audioFile = new File(SOUND);
   if (file.isDirectory()) {
     String names[] = file.list();
     names = sort(names);
     for (int i = 0; i < names.length; i++) {
-      if (names[i].toLowerCase().contains(".jpg") || 
+      if (names[i].toLowerCase().contains(".jpg")  || 
           names[i].toLowerCase().contains(".jpeg") ||
-          names[i].toLowerCase().contains(".tif") || //only works with Processing tiffs
+          names[i].toLowerCase().contains(".tif")  || //only works with Processing tiffs
           names[i].toLowerCase().contains(".png")) {
         tmp.add(dir + names[i]); 
       }
     }
     
     arraySize = tmp.size();
+
+    if (arraySize == 0) {
+      println("ERROR: No frames detected, exiting");
+      exit();
+      return null;
+    }
+
+    String audioNames[] = audioFile.list();
+    if (audioNames != null) {
+      audioNames = sort(audioNames);
+  
+      for (int i = 0; i < audioNames.length; i++) {
+        if (audioNames[i].toLowerCase().contains(".wav")) {
+          audioTmp.add(audioDir + audioNames[i]);
+        }
+      }
+    }
+
+    if (audioTmp.size() > 0) {
+      HAS_SOUND = true;
+      SOUNDTRACK_FILE = audioTmp.get(0);
+      println("Using audio file " + SOUNDTRACK_FILE);
+    } else {
+      println("No audio file detected, creating silent tracks");
+    }
+
     
-    if (!SOUND.equals("")) {
+    if (HAS_SOUND) {
       arraySize += SOUND_OFFSET;
     }
     
     output = new String[arraySize];
     
-    if (!SOUND.equals("")) {
+    if (HAS_SOUND) {
       for (int i = 0; i < SOUND_OFFSET; i++) {
         output[o] = "_BLANK_";
         o++;
@@ -183,8 +224,10 @@ String[] listFrames (String dir) {
     sort(output);
     return output;
   } else {
-    return null;
+    println("ERROR: SOURCE variable does not point to a directory");
+    exit();
   }
+  return null;
 }
 
 String leftPad (int val) {
@@ -280,7 +323,7 @@ void renderPages() {
           pageBuffer.image(frameBuffer, leftX, topY, FRAME_W, FRAME_H);
         }
         
-        if (!SOUND.equals("")) {
+        if (HAS_SOUND) {
           soundTop = y * SPACING;
           soundLeft = (x * round(16 * DPMM)) + LEFT_PAD + FRAME_W + round(0.3368 * DPMM);
           try {
@@ -298,9 +341,10 @@ void renderPages() {
       }
     }
     pageBuffer.endDraw();
-    pageBuffer.save(RENDER_PATH + "page_" + page + ".tif");
-    println("Saved page_" + page + ".tif");
+    pageBuffer.save(dataPath("page_" + page + ".tif"));
+    println("Saved page_" + dataPath(page + ".tif"));
   }
   printInfo();
+  println("Completed");
   exit();
 }

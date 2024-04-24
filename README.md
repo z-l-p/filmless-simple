@@ -80,7 +80,7 @@ sh scripts/export.sh /path/to/my/video.mov
 
 Tip for macOS Terminal users: You can get an absolute path to any file by simply dragging it into Terminal. Type "sh scripts/export " including the space at the end and then drag your video into Terminal and hit enter. Voilà.
 
-This will export the video in a *high quality* .png sequence to a folder on your Desktop in a folder named "frames". This is the default directory that the `filmless_processing.pde` sketch will look for an image sequence. If your video contained any audio, it will be exported to a mono file named "audio.wav" in the "audio" folder now on your desktop. Otherwise you may see an error message in your terminal telling you that it couldn't find a stream. Not to worry.
+This will export the video in a *high quality* .png sequence to the data folder in your filmless_processing sketch in a folder named "frames". This is the default directory that the `filmless_processing.pde` sketch will look for an image sequence. If your video contained any audio, it will be exported to a mono file named "audio.wav" in the "audio" folder now in the "audio" folder, next to "frames". Otherwise you may see an error message in your terminal telling you that it couldn't find a stream. Not to worry.
 
 You don't need to use this script to export your video to image sequences. You can use the application of choice to create your image sequences for the Processing sketch. This script simply lets you do that from the command line without opening up an NLE or media export program. 
 
@@ -133,7 +133,7 @@ sh scripts/calibration.sh
 
 ### pages.sh
 
-Similar to the calibration script, this will convert your output .tif files from `filmless_processing.pde` to the correct DPI. Also set the `DPI` variable in this script to the one used in your Processing sketch. By default, this looks for files named `page_*.tif` on your Desktop.
+Similar to the calibration script, this will convert your output .tif files from `filmless_processing.pde` to the correct DPI. Also set the `DPI` variable in this script to the one used in your Processing sketch. By default, this looks for files named `page_*.tif` in the filmless_processing/data folder.
 
 Unlike the calibration script, this does not convert your image to .png but maintains the TIFF format.
 
@@ -241,40 +241,16 @@ The scripts are tested on macOS and Linux, but can be converted to work with Win
 There are variables at the beginning of the sketch that you will need to change to properly generate pages from your images.
 
 ```java
-String DESKTOP = System.getProperty("user.home") + "/Desktop";
+int DPI = 1440;
 ```
 
-This line does not need to be used or changed, but will find the "Desktop" folder for the current user. This is useful if you wish to place your files in an easy-to-reach destination while generating files.
-
-```java
-String SOURCE = DESKTOP + "/frames/";
-```
-
-The `SOURCE` variable will point to the directory containing your image sequence. This can be changed completely or used as is if you place your image sequence in a folder named "frames" on your desktop and include the images.
-
-```java
-String SOUND = DESKTOP + "/audio/audio.wav";
-```
-
-The `SOUND` variable is optional. To include sound, use the path of a mono audio file. In the default setting, it will look for a file named "audio.wav" in a folder named "audio" on your Desktop. If you do not wish to use sound, change the line to this to generate a silent track: `String SOUND = "";`
-
-```java
-String RENDER_PATH = DESKTOP + "/";
-```
-
-This variable controls the output location for the `page_#.tif` files that will be produced by the sketch. These files can be LARGE (500MB to 2GB) so point this to a directory with a lot of space. Keep in mind, you will produce one of these pages for every 396 frames using the default settings, so a 4000 frame sequence will produce 11 pages. That as much as 22GB (or more) so plan accordingly.
+The DPI is the target for printing. The maximum DPI you'll be able to print is dependent on your printer or image reproduction technology. The higher the DPI, the higher the theoretical resolution of your output. This variable will also determine your sound quality, as you will only be able to reproduce the number of samples the vertical resolution allows. If your printer can only draw 10,000 lines in 24 frames, your sample rate will effectively be 10Khz.
 
 ```java
 String SOUNDTRACK_TYPE = "unilateral";
 ```
 
 The soundtrack type refers to the style of soundtrack that's produced by the sketch. The soundtrack is produced using [SoundtrackOptical](https://github.com/sixteenmillimeter/SoundtrackOptical) and the options are `unilateral`, `variable area`, `dual variable area`, `maurer`, `variable density`. Read more about these different types [here](http://www.paulivester.com/films/filmstock/guide.htm).
-
-```java
-int DPI = 1440;
-```
-
-The DPI is the target for printing. The maximum DPI you'll be able to print is dependent on your printer or image reproduction technology. The higher the DPI, the higher the theoretical resolution of your output. This variable will also determine your sound quality, as you will only be able to reproduce the number of samples the vertical resolution allows. If your printer can only draw 10,000 lines in 24 frames, your sample rate will effectively be 10Khz. 
 
 ```java
 String PITCH = "long";

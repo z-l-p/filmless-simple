@@ -23,8 +23,8 @@ if [ ! -f "${VIDEO}" ]; then
 fi
 
 # change these to directory where you will store your frames and audio
-FRAMES_DIR=~/Desktop/frames/
-AUDIO_DIR=~/Desktop/audio/
+FRAMES_DIR=./filmless_processing/data/frames/
+AUDIO_DIR=./filmless_processing/data/audio/
 
 mkdir -p "$FRAMES_DIR"
 mkdir -p "$AUDIO_DIR"
@@ -32,7 +32,7 @@ mkdir -p "$AUDIO_DIR"
 echo "Exporting ${VIDEO}..."
 
 
-rm "${FRAMES_DIR}*.png"
+rm -f "${FRAMES_DIR}*.png"
 ffmpeg -y -i "${VIDEO}" -f image2 -r 24 -compression_algo raw -pix_fmt rgb24 -crf 0 "${FRAMES_DIR}image-%08d.png"
 
 if [ "$WITH_SOUND" == "true" ]; then
