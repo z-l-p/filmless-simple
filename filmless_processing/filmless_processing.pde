@@ -163,7 +163,7 @@ String[] listFrames (String dir, String audioDir) {
     audioDir = audioDir + SEP;
   }
   file = new File(dir);
-  audioFile = new File(SOUND);
+  audioFile = new File(audioDir);
   if (file.isDirectory()) {
     String names[] = file.list();
     names = sort(names);
@@ -184,15 +184,21 @@ String[] listFrames (String dir, String audioDir) {
       return null;
     }
 
-    String audioNames[] = audioFile.list();
-    if (audioNames != null) {
-      audioNames = sort(audioNames);
-  
-      for (int i = 0; i < audioNames.length; i++) {
-        if (audioNames[i].toLowerCase().contains(".wav")) {
-          audioTmp.add(audioDir + audioNames[i]);
+    if (audioFile.isDirectory()) {
+      String audioNames[] = audioFile.list();
+      if (audioNames != null) {
+        audioNames = sort(audioNames);
+    
+        for (int i = 0; i < audioNames.length; i++) {
+          if (audioNames[i].toLowerCase().contains(".wav")) {
+            audioTmp.add(audioDir + audioNames[i]);
+          }
         }
+      } else {
+        println("Audio directory " + audioDir + " not found");
       }
+    } else {
+      println("SOUND string " + audioDir + " does not point to a directory");
     }
 
     if (audioTmp.size() > 0) {

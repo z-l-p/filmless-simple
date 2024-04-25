@@ -9,3 +9,5 @@ filmless_processing/data/frames/*.PNG
 filmless_processing/data/frames/*.JPEG
 filmless_processing/data/frames/*.JPG
 filmless_processing/data/frames/*.TIF
+filmless_processing/data/audio/*.wav
+filmless_processing/data/audio/*.WAV
