@@ -1,4 +1,4 @@
-int DPI = 1440;
+int DPI = 1200;
 //Change this to a DPI supported by your printer.
 //
 //Make sure to convert the generated "page_#.tif" files to the set DPI
