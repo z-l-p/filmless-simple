@@ -11,7 +11,7 @@ import soundtrack.optical.*;
  **/
 
 //types: unilateral, variable area, dual variable area, maurer, variable density
-int DPI = 1200;               //maximum printer DPI 
+int DPI = 1440;               //maximum printer DPI 
 String SOUNDTRACK_TYPE  = "unilateral";
 String PITCH = "long";        // long, short //7.62, 7.605
 String FORMAT = "16mm";       //16mm or super16
