@@ -39,7 +39,7 @@ int SHOW_PAGENUM = 1;            // Set to true to print page numbers (leave it 
 boolean NEGATIVE = false;     //true to invert image data
 boolean SHOW_PERFS = true;    //set to true to print perfs for cutting registration
 color PERFS_COLOR = color(255);
-int SOUND_OFFSET = 25;
+int SOUND_OFFSET = 0;
 
 //Don't change unless necessary
 String SEP = System.getProperty("file.separator");
@@ -89,7 +89,7 @@ PGraphics pageBuffer;
 PGraphics soundBuffer;
 
 void setup () {
-  size(640, 480);
+  size(460, 240);
   //surface.setResizable(true);
   println(SOURCE);
   println(SOUND);
@@ -141,7 +141,8 @@ void draw () {
   text("PAGE SIZE: " + PAGE_W_PIXELS + "x" + PAGE_H_PIXELS + " px", 10, 140);
   text("FRAMES/PAGE: " + (ROWS * COLUMNS), 10, 160);
   text("SECONDS/PAGE: " + ((ROWS * COLUMNS) / 24), 10, 180);
-  text("Rendering... (Window will close when done)", 10, 200);
+  textSize(20);
+  text("RENDERING... (This window will close when done.)", 10, 210);
 }
 
 void printInfo() {
