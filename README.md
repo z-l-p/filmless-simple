@@ -1,7 +1,5 @@
 # filmless-simple
 
-# WARNING: Work in Progress
-
 A simplified fork of the [filmless](https://github.com/sixteenmillimeter/filmless) toolkit for printing digital video onto projectable 16mm film strips. 
 
 **filmless** is a complete package including Processing sketches, laser cutter templates, calibration functionality, and video conversion scripts. It can be adapted for many workflows, and uses entirely Free Software. 
@@ -9,6 +7,8 @@ A simplified fork of the [filmless](https://github.com/sixteenmillimeter/filmles
 **filmless-simple** is based on the Processing sketch from filmless, but optimized for one workflow: printing on clear 16mm leader that has been taped to letter-sized paper. filmless-simple assumes that you have access to an NLE (like Adobe Premiere) to prepare the image sequence and sound files. Once you set up Processing (see below) there aren't many choices to make. It generally "just works."
 
 _filmless-simple was developed for a workshop at Cooper Union For the Advancement of Science and Art in March 2025, part of the [Cooper Handmade Cinema](https://handmadecinema.cooper.edu/) project, funded by the [CU Grant Program](https://cooper.edu/academics/research-fellowships/cooper-union-grant-program)._
+
+![](pix/banner-3up.jpg)
 
 ## How It Works
 1. Print the included template file onto card stock (US letter size).
