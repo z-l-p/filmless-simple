@@ -14,7 +14,7 @@ _filmless-simple was developed for a workshop at Cooper Union For the Advancemen
 1. Print the included template file onto card stock (US letter size).
 2. Use double-stick tape to attach strips of clear 16mm film to the template.
 3. Use an NLE to export a video file as individual frames (+ optional audio file).
-4. Use the **filmless-simple.pde** Processing sketch to arrange these files into a page of tiny images that match the template.
+4. Use the **filmless_simple.pde** Processing sketch to arrange these files into a page of tiny images that match the template.
 5. Load the template+film into the printer and print again.
 6. Wait for it to dry, remove the film, and splice it together for projection.
 7. Rejoice! You just re-invented the wheel!
