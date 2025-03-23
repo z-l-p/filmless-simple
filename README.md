@@ -10,7 +10,8 @@ A simplified fork of the [filmless](https://github.com/sixteenmillimeter/filmles
 
 _filmless-simple was developed for a workshop at Cooper Union For the Advancement of Science and Art in March 2025, part of the [Cooper Handmade Cinema](https://handmadecinema.cooper.edu/) project, funded by the [CU Grant Program](https://cooper.edu/academics/research-fellowships/cooper-union-grant-program)._
 
-
+## How It Works
+Print the included template file onto letter size card stock. Use double-stick tape to attach strips of clear 16mm film to the template. Use a video editor to export a video file as individual frames (and optional audio). Use the filmless-simple Processing sketch to arrange these files into a page of tiny images that match the template. Load the template+film into the printer and print again. Wait for it to dry, carefully remove the film, and splice it together for projection. Rejoice!
 
 ## What this repository contains
 
