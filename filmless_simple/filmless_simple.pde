@@ -3,7 +3,7 @@
 // by Matt McWilliams https://sixteenmillimeter.com/projects/filmless/
 // Customized by Zach Poff in March 2025:
 //  - Added vertical lines to make film strip layout easier
-//  - Added printed page numbering and direction arrow
+//  - Added direction arrow and (optional) page numbering
 //  - Exported page is now PNG, with DPI metadata for printing actual size
 
 
@@ -18,10 +18,6 @@ import javax.imageio.metadata.*;
 import javax.imageio.stream.*;
 import java.awt.Graphics2D;
 
-
-// Export video to image sequence using ffmpeg 
-// ffmpeg -i video.mov -f image2 -r 24 /tmp/image-%04d.png
-// ffmpeg -i video.mov -acodec pcm_s16le -ac 1 audio.wav //-ar 16000 sets rate
 
 /**
  *  CHANGE THESE
@@ -38,7 +34,8 @@ float PAGE_H = 11.0;          //page height in inches
 float SAFE_W = .25;           //safe area on each side of the page
 float SAFE_H = 1.0;            //safe area on top and bottom of page
 color BACKGROUND = color(255);  //the color that will fill the entire frame where there's no image (clear 255 is best for production)
-int GUIDELINE_PX = 0;        // The pixel width of the vertical guidelines between strips of film (16px is helpful for taping film to sheets)
+int GUIDELINE_PX = 0;        // The pixel width of the vertical guidelines between strips of film (set to 0 to disable)
+int SHOW_PAGENUM = 1;            // Set to true to print page numbers (leave it off for printing the template)
 boolean NEGATIVE = false;     //true to invert image data
 boolean SHOW_PERFS = true;    //set to true to print perfs for cutting registration
 color PERFS_COLOR = color(255);
@@ -144,6 +141,7 @@ void draw () {
   text("PAGE SIZE: " + PAGE_W_PIXELS + "x" + PAGE_H_PIXELS + " px", 10, 140);
   text("FRAMES/PAGE: " + (ROWS * COLUMNS), 10, 160);
   text("SECONDS/PAGE: " + ((ROWS * COLUMNS) / 24), 10, 180);
+  text("Rendering... (Window will close when done)", 10, 200);
 }
 
 void printInfo() {
@@ -377,7 +375,10 @@ void renderPages() {
   pageBuffer.textSize(DPI/4);
   pageBuffer.translate(PAGE_W_PIXELS - DPI/8, DPI/8);
   pageBuffer.rotate(radians(270));
-  pageBuffer.text("Page " + (page +1) + "  INSERT --->", 0, 0);
+  pageBuffer.text("  INSERT --->", 0, 0);
+  if (SHOW_PAGENUM == 1) {
+    pageBuffer.text("Page " + (page +1), -DPI*3, 0);
+  }
   pageBuffer.endDraw();
   // pageBuffer.save(dataPath("page_" + page + ".tif")); // original save method
   // updated saving method that sets file to correct DPI
