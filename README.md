@@ -47,7 +47,7 @@ _Note: Processing can only read .tif files produced by the application itself, s
 <a name="guide"></a>
 ## 3. Step-By-Step Guide
 
-Coming soon!
+See guide in [Docs Folder](https://github.com/z-l-p/filmless-simple/tree/master/docs)
 
 <a name="variables"></a>
 ## 4. Processing variables
