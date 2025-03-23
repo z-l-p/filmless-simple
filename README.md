@@ -11,7 +11,13 @@ A simplified fork of the [filmless](https://github.com/sixteenmillimeter/filmles
 _filmless-simple was developed for a workshop at Cooper Union For the Advancement of Science and Art in March 2025, part of the [Cooper Handmade Cinema](https://handmadecinema.cooper.edu/) project, funded by the [CU Grant Program](https://cooper.edu/academics/research-fellowships/cooper-union-grant-program)._
 
 ## How It Works
-Print the included template file onto letter size card stock. Use double-stick tape to attach strips of clear 16mm film to the template. Use a video editor to export a video file as individual frames (and optional audio). Use the filmless-simple Processing sketch to arrange these files into a page of tiny images that match the template. Load the template+film into the printer and print again. Wait for it to dry, carefully remove the film, and splice it together for projection. Rejoice!
+1. Print the included template file onto card stock (US letter size).
+2. Use double-stick tape to attach strips of clear 16mm film to the template.
+3. Use an NLE to export a video file as individual frames (+ optional audio file).
+4. Use the **filmless-simple.pde** Processing sketch to arrange these files into a page of tiny images that match the template.
+5. Load the template+film into the printer and print again.
+6. Wait for it to dry, remove the film, and splice it together for projection.
+7. Rejoice! You just re-invented the wheel!
 
 ## What this repository contains
 
@@ -40,6 +46,8 @@ _Note: Processing can only read .tif files produced by the application itself, s
 
 <a name="guide"></a>
 ## 3. Step-By-Step Guide
+
+Coming soon!
 
 <a name="variables"></a>
 ## 4. Processing variables
