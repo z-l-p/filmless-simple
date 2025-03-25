@@ -118,7 +118,7 @@ onto your card stock:
   Resolution: SuperPhoto – 1440 dpi  
   Finest Detail: ON  
   Advanced Media Control:  
-  All sliders in the middle  
+  All sliders set to "0"  
   Paper Thickness: 5  
   Platen Gap: Auto  
   Color Handling: Photoshop Manages Colors  
