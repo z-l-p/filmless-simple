@@ -50,5 +50,5 @@ See guide in [Docs folder](https://github.com/z-l-p/filmless-simple/tree/master/
 <a name="demo"></a>
 ## 4. Demo Files
 
-The [Demo Files folder]("https://github.com/z-l-p/filmless-simple/tree/master/demo files") contains test frames and audio to try out the process.
+The [Demo Files folder](https://github.com/z-l-p/filmless-simple/tree/master/demo) contains test frames and audio to try out the process.
 
