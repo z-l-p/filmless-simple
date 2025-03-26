@@ -24,6 +24,7 @@ _filmless-simple was developed for a workshop at Cooper Union For the Advancemen
 1. [Processing sketch for generating pages of film strips](#processing)
 2. [Required Software & installation instructions](#dependencies)
 3. [Step by Step Guide](#guide)
+4. [Demo Files](#demo)
 
 <a name="processing"></a>
 ## 1. Processing sketch for generating pages of film strips
@@ -44,5 +45,10 @@ The sketch can be modified to accommodate different desired output, **but you do
 <a name="guide"></a>
 ## 3. Step-By-Step Guide
 
-See guide in [Docs Folder](https://github.com/z-l-p/filmless-simple/tree/master/docs)
+See guide in [Docs folder](https://github.com/z-l-p/filmless-simple/tree/master/docs)
+
+<a name="demo"></a>
+## 4. Demo Files
+
+The [Demo Files folder]("https://github.com/z-l-p/filmless-simple/tree/master/demo files") contains test frames and audio to try out the process.
 
