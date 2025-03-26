@@ -147,7 +147,8 @@ onto your card stock:
   jump, and ink will eventually be deposited in the projector gate. Be
   sure to clean the projector afterward!
 
-  **Troubleshooting**
+### Troubleshooting ###
 
 - **Processing Error: "ArrayIndexOutOfBoundsException .... "** means that your sound file is stereo. Try again with a mono file.
-- **The ink won't dry.** If the ink is pooling on the film surface, you're printing on the base side of the film. Turn it over to print on the emulsion side.
+- **The ink won't dry!** If the ink is pooling on the film surface, you're printing on the base side of the film. Turn it over to print on the emulsion side.
+- **Empty frames at the start:** This is caused by the standard 25 frame sound offset of 16mm film. Since sound precedes picture, the code adds blank frames before the picture starts. If you don't mind a silent first second of picture, you can cut it off. If you're making a loop then you can get tricky: In Premiere, unlock your picture and sound. Shift the sound 25 frames earlier than picture. Cut the sound to separate the first 25 frames and move them to the end, filling the gap left over from the shift. Then set the SOUND_OFFSET variable in Processing to 0. The resulting film can be spliced into a loop with continuous sound and picture. 
