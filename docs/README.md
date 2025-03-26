@@ -2,7 +2,7 @@
 
 _Zach Poff - [Cooper Union Handmade Cinema Group](https://handmadecinema.cooper.edu/) – March 2025_
 
-**This is a complete guide to digitally printing 16mm films using a common inkjet printer, using the [filmless-simple](https://github.com/z-l-p/filmless-simple) workflow. It was written to support a workshop at Cooper Union for the Advancement of Science and Art, but the basic workflow would the same anywhere**
+**This is a complete guide to digitally printing 16mm films using a common inkjet printer, using the [filmless-simple](https://github.com/z-l-p/filmless-simple) workflow. It was written to support a workshop at Cooper Union for the Advancement of Science and Art, but the basic workflow would be the same anywhere**
 
 Before you start, be aware of what this medium does (and doesn't do) compared to other moving-image techniques:
 
@@ -108,18 +108,19 @@ onto your card stock:
 - Press the area with 3 dots to open the manual feed tray. (Before
   printing, it will pull the paper in, then eject it back toward you
   after printing.)
+- IMPORTANT: Draw an arrow on the front edge of the paper before you insert it. (You'll use this mark later to make sure the paper is inserted the right way for the second printing pass. 
 - Follow the LCD display to load paper (aligned with front edge).
 - Print the page, using these specific settings:  
   Select the EPSON Stylus Pro 3880 printer and click “Print Settings…”  
   In the popup, select:  
   Paper Size: US Letter (Manual – Front)  
   Printer Settings:  
-  Media Type: Enhanced Matte Paper  
+  Media Type: Enhanced Matte Paper (Double-check this. Sometimes it changes randomly!)
   Resolution: SuperPhoto – 1440 dpi  
   Finest Detail: ON  
   Advanced Media Control:  
   All sliders set to "0"  
-  Paper Thickness: 5  
+  Paper Thickness: 4  
   Platen Gap: Auto  
   Color Handling: Photoshop Manages Colors  
   Printer Profile: Epson … 3880 Enhanced Matte Paper  
@@ -130,7 +131,7 @@ onto your card stock:
 - Attach 3 horizontal strips of double-stick tape to your printed template page:
   One above the frames, one below, and one in the middle. (Some tape is too sticky to remove easily, so rub your fingers on the sticky surface to reduce adhesion.)
 - Identify which side of your clear leader has emulsion. There are several ways, but my favorite is to rub my thumb on the film and listen: One side will sound more “rough” than the other. That’s the emulsion.
-- Carefully lay the film on the page, matching the printed guides. Cut each strip longer than the printed frames, almost to the edge of the paper.
+- Carefully lay the film on the page, matching the printed guides. Cut each strip longer than the printed frames, almost to the edge of the paper. (You'll need a few un-printed frames during splicing.)
 - Check the page for flatness before you print. The film strips must not overlap!
 
 **Print Your Frames:**
@@ -145,3 +146,8 @@ onto your card stock:
 - The film should run OK in the projector, but the many splices will
   jump, and ink will eventually be deposited in the projector gate. Be
   sure to clean the projector afterward!
+
+  **Troubleshooting**
+
+- **Processing Error: "ArrayIndexOutOfBoundsException .... "** means that your sound file is stereo. Try again with a mono file.
+- **The ink won't dry.** If the ink is pooling on the film surface, you're printing on the base side of the film. Turn it over to print on the emulsion side.
