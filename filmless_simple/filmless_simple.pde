@@ -39,7 +39,7 @@ int SHOW_PAGENUM = 1;            // Set to true to print page numbers (leave it 
 boolean NEGATIVE = false;     //true to invert image data
 boolean SHOW_PERFS = true;    //set to true to print perfs for cutting registration
 color PERFS_COLOR = color(255);
-int SOUND_OFFSET = 0;
+int SOUND_OFFSET = 25;
 
 //Don't change unless necessary
 String SEP = System.getProperty("file.separator");
@@ -376,9 +376,9 @@ void renderPages() {
   pageBuffer.textSize(DPI/4);
   pageBuffer.translate(PAGE_W_PIXELS - DPI/8, DPI/8);
   pageBuffer.rotate(radians(270));
-  pageBuffer.text("  INSERT --->", 0, 0);
+  //pageBuffer.text("  INSERT --->", 0, 0);
   if (SHOW_PAGENUM == 1) {
-    pageBuffer.text("Page " + (page +1), -DPI*3, 0);
+    pageBuffer.text("Page " + (page +1), 0, 0);
   }
   pageBuffer.endDraw();
   // pageBuffer.save(dataPath("page_" + page + ".tif")); // original save method
