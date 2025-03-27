@@ -38,7 +38,7 @@ The sketch can be modified to accommodate different desired output, **but you do
 
 * An NLE to convert a video into image sequence + sound file (Premiere, Resolve, or Free Software Alternatives)
 * A photo editor for viewing and printing the pages of "film" (Photoshop, The GIMP, or even MacOS Preview)
-* [Processing](https://processing.org/) - [[Download](https://processing.org/download/)]
+* [Processing](https://processing.org/) - [[Download](https://processing.org/download/)] Mac users: Be sure to choose the Apple Silicon or Intel version to match your machine!
 * [Sound library for Processing](https://processing.org/reference/libraries/sound/index.html) - Install via Processing library manager ("Sketch menu / Import Library / Library Manager")
 * [SoundtrackOptical library for Processing](https://github.com/sixteenmillimeter/SoundtrackOptical) Download from github & unzip, rename folder to "SoundtrackOptical", place in User/Documents/Processing/libraries/
 
