@@ -15,30 +15,29 @@ Before you start, be aware of what this medium does (and doesn't do) compared to
 
 **Cons:**
 
-- It's not really a technique to make "desktop" films using tools you already have. It requires certain film-specific materials (special 16mm leader, splicer, projector) in addition to a computer & printer.
+- It's not a technique to make purely "desktop" films using tools you already have. It requires certain film-specific materials (special 16mm leader, splicer, projector) in addition to a computer & printer.
 - It's time-consuming and laborious (which is part of the charm)
 - Not very durable (ink will scrape off the film and end up on the side
   rails of the projector). For long-term use, you’ll want to optically
   print this onto “real” film (negating any cost savings)
 - Inkjet ink won’t stick to common clear leader. You need **leader with
   emulsion.**  
-  (A *laser* printer can print onto any clear film, but color laser printers are
-  expensive and finicky.)
+  (A *laser* printer, however, can print onto any clear film. See below.)
 
 
 # What you need: #
 
 ### Inkjet printer ###
 
-- Preferably with straight paper path (like the Epson 3880 printers at
-  Cooper Union)
+- Preferably with straight paper path (Cooper Union currently has Epson 3880 printers)
+- This workflow should work fine with laser printers too, but hasn't been tested that way. Laser printers can print on cheap clear leader (no need for emulsion). They have very different aesthetics, though (a consistent low-rez grid of halftone dots rather than stochastic inkjet dithering). Also, the cost of replacement toner for *color* laser printers usually exceeds the price of the printer, and most have countermeasures to make it hard/impossible to use 3rd party toner.
 
 ### Software ### 
 
 See [software links in the main README file](https://github.com/z-l-p/filmless-simple?tab=readme-ov-file#dependencies)
 
 - **Adobe Premiere** (or other NLE, for preparing your video file and
-  exporting to frames + audio)
+  exporting to frames + audio) For an easy freeware solution, consider [Shutter Encoder](https://www.shutterencoder.com/) (a graphical interface for the open source FFMPEG video processing toolkit.)
 
 - **Adobe Photoshop** (or other image editor, for printing)
 
@@ -47,7 +46,7 @@ See [software links in the main README file](https://github.com/z-l-p/filmless-s
   internal library manager) and the **OpticalSound library** (from
   github)
 
-- **filmless_simple.pde** Processing sketch in this repo (based on the **[filmless](https://sixteenmillimeter.com/projects/filmless/)**
+- **filmless_simple.pde** Processing sketch in this repo that you're reading right now! (based on the **[filmless](https://sixteenmillimeter.com/projects/filmless/)**
   workflow by Matt McWilliams).
 
 ### Card Stock & Tape ### 
@@ -139,8 +138,8 @@ In Photoshop, open the page file that you generated. Then print it onto your car
 
 - In Photoshop, follow the same steps as before to print onto your page
   of film.
-- Wait at least 10 minutes for the film to dry. You’ll get better results if you let it dry longer.
-- Carefully peel the film from the card stock, splicing it together as you go. One page will make a nice loop if you splice it end-to-end, or you can make several smaller loops.
+- Wait at least 10 minutes for the film to dry. This is the bare minumum for quick workshops. It's best to let it dry for a few hours.
+- Carefully peel the film from the card stock, splicing it together as you go. If you're interested in looping, one page will make a nice loop if you splice it end-to-end, or you can make several smaller loops.
 
 ### Showtime! ###
 
@@ -152,7 +151,7 @@ In Photoshop, open the page file that you generated. Then print it onto your car
 
 - **Processing Won't Launch: "Unable to Load Java Runtime Environment":** You're on a Mac and you downloaded the wrong version. Be sure to select the Apple Silicon or Intel versions on the download page.
 - **Processing Error: "ArrayIndexOutOfBoundsException .... "** means that your sound file is stereo. Try again with a mono file.
-- **The ink won't dry!** If the ink is pooling on the film surface, you're printing on the base side of the film. Turn it over to print on the emulsion side.
+- **The ink won't dry!** If the ink is pooling on the film surface, you're printing on the base side of the film. Turn it over to print on the emulsion side. If neither side has emulsion, you got the wrong leader.
 - **Empty frames at the start:** This is caused by the standard 25 frame sound offset of 16mm film. Since sound precedes picture, the code adds blank frames before the picture starts. If you don't mind a silent first second of picture, you can cut it off. If you're making a loop then you can get tricky: In Premiere, unlock your picture and sound. Shift the sound 25 frames earlier than picture. Cut the sound to separate the first 25 frames and move them to the end, filling the gap left over from the shift. Then set the SOUND_OFFSET variable in Processing to 0. The resulting film can be spliced into a loop with continuous sound and picture.
 - **The print doesn't line up exactly with the film!** It will never be 100%, but there is a way to calibrate the print size to match your film. First you need to check if your film is "short pitch" (most camera stocks) or "long pitch" (most print stocks) and adjust the Processing "PITCH" variable accordingly. If you need further adjustment, adjust the MAGIC_H_CORRECTION and MAGIC_W_CORRECTION variables. (see below)
 
